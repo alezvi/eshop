@@ -9,6 +9,7 @@ class Product
     private $stock;
     private $price;
     private $photo;
+    private $categoryId;
     
     public function setId(int $id) : Product 
     {
@@ -46,6 +47,12 @@ class Product
         return $this;
     }
     
+    public function setCategoryId($id) : Product
+    {
+        $this->categoryId = $id;
+        return $this;
+    }
+    
     public function getId() : int 
     {
         return $this->id;
@@ -74,6 +81,11 @@ class Product
     public function getPhoto() : string
     {
         return $this->photo;
+    }
+    
+    public function getCategoryId() : int
+    {
+        return $this->categoryId;
     }
     
 }
