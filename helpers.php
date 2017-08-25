@@ -45,13 +45,15 @@ if (! function_exists('get_connection')) {
  * @return string
  */
 if (! function_exists('view')) {
-    function view($name) {
+    function view($name, $data = []) {
+        extract($data);
+
         $path = 'views/' . $name . '.php';
 
         if (! is_readable($path)) {
             throw new Exception('The view file does not exists or is not readable.');
         }
 
-        return $path;
+        require $path;
     }
 }

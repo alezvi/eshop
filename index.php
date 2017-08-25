@@ -4,8 +4,33 @@ require 'config/dev.php';
 require 'helpers.php';
 require 'router.php';
 
-get_model_and_view();
+switch ($_GET['route']) {
 
-$products = [];
+    case 'customers':
+        view('customers/index', [
+            'customers' => []
+        ]);
+        break;
 
-include view('products/add');
+    case 'orders':
+        view('orders/index', [
+            'orders' => []
+        ]);
+        break;
+
+    case 'products':
+        view('products/index', [
+            'products' => []
+        ]);
+        break;
+
+    case 'products/add':
+        view('products/add', [
+            'product' => $_POST['product'] ?? []
+        ]);
+        break;
+
+    default :
+        view('index');
+
+}
