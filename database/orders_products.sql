@@ -12,7 +12,6 @@ CREATE TABLE `orders_products` (
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `deleted_at` TIMESTAMP NULL DEFAULT NULL,
     
-    PRIMARY KEY(`id`),
     INDEX `fk_product_id_references_product` (`product_id`),
     INDEX `fk_order_id_references_order` (`order_id`)
     
