@@ -13,10 +13,21 @@ trait ValidatesModelTrait implements ValidatorInterface
         return (bool) empty($this->errors);
     }
     
-    
     public function getError($key) 
     {
         return $this->errors[$key] ?? null;
+    }
+    
+    public function addError($key, $message) 
+    {
+        $this->errors[$key][] = $message;
+        
+        return $this;
+    }
+    
+    public function errors() 
+    {
+        return $this->errors;
     }
     
 }
