@@ -2,6 +2,7 @@
 
 class Category extends Model
 {
+    use UseTimestamps;
     
     private $id;
     
