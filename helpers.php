@@ -25,14 +25,33 @@ spl_autoload_register(function ($file) {
  * @throws PDOException If cannot connect
  */
 
-if (! function_exists('getConnection')) {
-    function getConnection($name = 'default') {
+if (! function_exists('get_connection')) {
+    function get_connection($name = 'default') {
         
         try {
-            return new PDO('mysql:dbname=ecommerce;host=127.0.0.1', 'root', '');
+            return new PDO('mysql:dbname=eit;host=127.0.0.1', 'root', '');
         } catch (PDOException $e) {
             throw new Exception($e->getMessage(), 1);
         }
 
+    }
+}
+
+/**
+ * Get the full name for the view
+ *
+ * @param string $name
+ *
+ * @return string
+ */
+if (! function_exists('view')) {
+    function view($name) {
+        $path = 'views/' . $name . '.php';
+
+        if (! is_readable($path)) {
+            throw new Exception('The view file does not exists or is not readable.');
+        }
+
+        return $path;
     }
 }

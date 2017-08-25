@@ -30,24 +30,32 @@ $routes = [
         'orders',
         'orders/create',
         'orders/edit/:id',
-        'products/add',
+        'products/add' => [ 'Product', 'products/add' ],
         'products/edit/:id',
     ]
     
 ];
 
-function getModelAndView() 
+function get_model_and_view()
 {
+    global $routes;
+
     $allowedMethods = ['get', 'post'];
     
     $friendlyRoute = str_replace('route=', '', $_SERVER['QUERY_STRING']);
     
     $paths = explode('/', $friendlyRoute);
     
-    if ('post' === $_SERVER['REQUEST_METHOD']) {
-        if ($routes['post']) {}
+    if ('post' === strtolower($_SERVER['REQUEST_METHOD'])) {
+        if (array_key_exists($_GET['route'], $routes['post'])) {
+            $modelname = 'Models\\' . $routes['post'][$_GET['route']][0];
+            $model = new $modelname;
+            require $routes['post'][$_GET['route']][1];
+        }
         
-        if ($routes['get']) {}
+        if ($routes['get']) {
+            return 'yes';
+        }
         
         throw new Exception('The given route does not exists', 1);
     }
