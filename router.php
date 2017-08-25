@@ -35,3 +35,20 @@ $routes = [
     ]
     
 ];
+
+function getModelAndView() 
+{
+    $allowedMethods = ['get', 'post'];
+    
+    $friendlyRoute = str_replace('route=', '', $_SERVER['QUERY_STRING']);
+    
+    $paths = explode('/', $friendlyRoute);
+    
+    if ('post' === $_SERVER['REQUEST_METHOD']) {
+        if ($routes['post']) {}
+        
+        if ($routes['get']) {}
+        
+        throw new Exception('The given route does not exists', 1);
+    }
+}
