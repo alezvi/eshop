@@ -153,7 +153,7 @@ class Product
      */
     public function getPhoto() : string
     {
-        return $this->photo;
+        return $this->photo ?? '';
     }
 
     /**

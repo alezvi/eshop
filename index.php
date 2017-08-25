@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 
 require 'config/dev.php';
 require 'helpers.php';
@@ -19,15 +20,38 @@ switch ($_GET['route']) {
         break;
 
     case 'products':
+        require 'src/Repositories/ProductsRepository.php';
+        $repo = new ProductsRepository();
+
         view('products/index', [
-            'products' => []
+            'products' => $repo->all()
         ]);
         break;
 
     case 'products/add':
+        require 'src/Repositories/ProductsRepository.php';
+        $repo = new ProductsRepository();
+        $product = new Product();
+
+        $product->setName('LCD 24 pulgadas');
+        $product->setStock(20);
+        $product->setPrice(899);
+        $product->setBrand('Phillips');
+        $product->setCategoryId(7);
+        $product->setPhoto('no-image.jpg');
+
+        if ($id = $repo->add($product)) {
+            echo 'El producto ha sido guardado!';
+        }
+
         view('products/add', [
             'product' => $_POST['product'] ?? []
         ]);
+        break;
+
+    case 'products/view':
+
+
         break;
 
     default :
