@@ -40,8 +40,11 @@ switch ($_GET['route']) {
         $product->setCategoryId(7);
         $product->setPhoto('no-image.jpg');
 
-        if ($id = $repo->add($product)) {
-            echo 'El producto ha sido guardado!';
+        $id = $repo->add($product);
+
+        if (is_int($id)) {
+            $_SESSION['flash'] = 'El producto ha sido guardado!';
+            header('location: route=products');
         }
 
         view('products/add', [

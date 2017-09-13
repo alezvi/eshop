@@ -2,39 +2,74 @@
 
 class Customer 
 {
-    private $id;
-    private $firstName;
-    private $lastName;
-    
-    public function setId(int $id) : Customer
+	/**
+	 * @var int
+	 */
+	private $id;
+
+	/**
+	 * @var string
+	 */
+	private $firstName;
+
+	/**
+	 * @var string
+	 */
+	private $lastName;
+
+	/**
+	 * @param int $id
+	 *
+	 * @return Customer
+	 */
+	public function setId(int $id) : Customer
     {
         $this->id = $id;
         return $this;
     }
-    
-    public function setFirstName(string $firstName) : Customer
+
+	/**
+	 * @param string $firstName
+	 *
+	 * @return Customer
+	 */
+	public function setFirstName(string $firstName) : Customer
     {
         $this->firstName = $firstName;
         return $this;
     }
-    
-    public function setLastName(string $lastName) : Customer
+
+	/**
+	 * @param string $lastName
+	 *
+	 * @return Customer
+	 */
+	public function setLastName(string $lastName) : Customer
     {
         $this->lastName = $lastName;
         return $this;
     }
-    
-    public function getId() : int
+
+	/**
+	 * @return int
+	 */
+	public function getId() : int
     {
         return (int) $this->id;
     }
-    
-    public function getFirstName() : string
+
+	/**
+	 * @return string
+	 */
+	public function getFirstName() : string
     {
         return $this->firstName;
     }
-    
-    public function geLastName() : string
+
+	/**
+	 * @return string
+	 */
+	public function geLastName() : string
     {
         return $this->lastName;
     }

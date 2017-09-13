@@ -1,6 +1,6 @@
 <?php
 
-class AbstractValidator 
+abstract class AbstractValidator implements ValidatorInterface
 {
     use ValidatesModelTrait;
 }

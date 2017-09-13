@@ -5,15 +5,15 @@
     </div>
     <div>
         <label>Brand</label>
-        <input type="text" name="brand" required value="<?= $_POST['name'] ?? '' ?>">
+        <input type="text" name="brand" required value="<?= $_POST['brand'] ?? '' ?>">
     </div>
     <div>
         <label>Stock</label>
-        <input type="number" name="stock" min="0" value="<?= $_POST['name'] ?? 0 ?>">
+        <input type="number" name="stock" min="0" value="<?= $_POST['stock'] ?? 0 ?>">
     </div>
     <div>
         <label>Price</label>
-        <input type="number" name="price" min="0.0" max="99999.99" value="<?= $_POST['name'] ?? 0 ?>">
+        <input type="number" name="price" min="0.0" max="99999.99" value="<?= $_POST['price'] ?? 0 ?>">
     </div>
     <div>
         <label>Picture</label>

@@ -12,15 +12,28 @@ class ProductsRepository
         //$this->collection = new ProductsCollection;
     }
 
+	/**
+	 * Store new product.
+	 *
+	 * @param Product $product
+	 *
+	 * @return string
+	 */
     public function add(Product $product)
     {
-        $sql = "INSERT INTO products(`id`, `name`, `brand`, `price`, `stock`, `category_id`)";
-        $sql .= "VALUES(?, ?, ?, ?, ?, ?)";
+	    $fields = ['id', 'name', 'brand', 'price', 'stock', 'category_id'];
+
+	    $columns = implode(',', $fields);
+
+	    $marks = '?' . str_repeat(',?', count($fields)-1);
+
+	    $sql = "INSERT INTO products({$columns}) VALUES({$marks})";
 
         $connection = get_connection();
+
         $query = $connection->prepare($sql);
 
-        $result = $query->execute([
+        $query->execute([
             null,
             $product->getName(),
             $product->getBrand(),
@@ -32,14 +45,28 @@ class ProductsRepository
         return $connection->lastInsertId();
     }
 
-    public function all()
+	/**
+	 * Get all products
+	 *
+	 * @param $options array
+	 *
+	 * @return array
+	 */
+    public function all(array $options = ['limit' => '1,10'])
     {
-        $sql = "SELECT * FROM products LIMIT 1,10";
+        $sql = "SELECT * FROM products LIMIT " . $options['limit'];
         $connection = get_connection();
         $query = $connection->query($sql, PDO::FETCH_CLASS, 'Product');
         return $query->fetchAll();
     }
-    
+
+	/**
+	 * Find product by id attribute.
+	 *
+	 * @param $id
+	 *
+	 * @return array
+	 */
     public function byId($id) 
     {
         $sql = "SELECT * FROM products WHERE id = :id LIMIT 1";

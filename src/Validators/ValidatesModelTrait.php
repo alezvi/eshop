@@ -1,6 +1,6 @@
 <?php 
 
-trait ValidatesModelTrait implements ValidatorInterface
+trait ValidatesModelTrait
 {
     
     public function hasError($key) 
