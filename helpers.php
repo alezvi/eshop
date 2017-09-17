@@ -52,7 +52,7 @@ if (! function_exists('view')) {
             throw new Exception('The view file does not exists or is not readable.');
         }
 
-	    extract($data);
+        extract($data);
 
         require $path;
     }
